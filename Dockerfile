@@ -78,7 +78,7 @@ RUN wget https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSI
     cd .. && \
     rm -rf samtools-${SAMTOOLS_VERSION}
 
-# Build gmp
+# Install gmp
 RUN wget https://gmplib.org/download/gmp/gmp-$GMP_VERSION.tar.lz && \
     tar --lzip -xf gmp-$GMP_VERSION.tar.lz && \
     rm -f gmp-$GMP_VERSION.tar.lz && \
@@ -90,7 +90,7 @@ RUN wget https://gmplib.org/download/gmp/gmp-$GMP_VERSION.tar.lz && \
     cd .. && \
     rm -rf gmp-$GMP_VERSION
 
-# Build libmaus
+# Install libmaus
 ENV CXXFLAGS="-I$PREFIX/include -fPIC -O2 -std=c++11 -lstdc++fs"
 RUN wget https://gitlab.com/german.tischler/libmaus2/-/archive/$LIBMAUS_VERSION/libmaus2-$LIBMAUS_VERSION.tar.gz && \
     tar -xzf libmaus2-$LIBMAUS_VERSION.tar.gz && \
@@ -101,7 +101,7 @@ RUN wget https://gitlab.com/german.tischler/libmaus2/-/archive/$LIBMAUS_VERSION/
     cd .. && \
     rm -rf libmaus2-$LIBMAUS_VERSION
 
-# biobambam2
+# Install biobambam2
 ENV LDFLAGS="-Wl,-rpath=XORIGIN/../lib -Wl,-z -Wl,origin $LDFLAGS"
 RUN wget https://gitlab.com/german.tischler/biobambam2/-/archive/$BIOBAMBAM_VERSION/biobambam2-$BIOBAMBAM_VERSION.tar.gz && \
     tar -xzf biobambam2-${BIOBAMBAM_VERSION}.tar.gz && \
